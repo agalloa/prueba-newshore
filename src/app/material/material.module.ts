@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   exports: [
-    MatRadioModule
+    MatRadioModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

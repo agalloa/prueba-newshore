@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OnlyRoutesService } from '../../services/only-routes.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  public form: FormGroup;
+
+  public saveDataApi: any[] = [];
+
+  constructor(
+    public onlyRoutesService: OnlyRoutesService,
+    private formbuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.form = this.formbuilder.group({
+      origin: ['MZL'],
+      destination: ['BCN'],
+      level: [0]
+    });
   }
 
+  ngOnInit(): void {
+    //this.loadInfo();
+    // this.obtainDataForm();
+  }
+
+
+  submit() {
+    console.log(this.form.value);
+    this.router.navigate(['/home'], { queryParams: { origin: this.form.value.origin, destination: this.form.value.destination, level: this.form.value.level } });
+  }
 }

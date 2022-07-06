@@ -1,0 +1,25 @@
+<h2 class="color-text text-left mt-xl-5 mt-lg-5">
+  Top most searched destinations
+</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-xl-3">
+  <a href="" *ngFor="let data of selectRoutes">
+    <div class="col">
+      <div class="card h-100">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(20).jpg"
+          class="card-img"
+          alt="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(20).jpg"
+        />
+        <div class="card-img-overlay">
+          <h5 class="card-title text-white">{{ data.arrivalStation }}</h5>
+          <p class="card-title text-white">${{ data.price }}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto mt-xl-5 mb-5">
+  <button type="button" class="btn btn-blue rounded-pill">
+    See more <i class="fa-solid fa-arrow-right-long"></i>
+  </button>
+</div>
