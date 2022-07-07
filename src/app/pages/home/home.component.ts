@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatRadioChange } from '@angular/material/radio';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { OnlyRoutesService } from '../../services/only-routes.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,6 @@ import { OnlyRoutesService } from '../../services/only-routes.service';
 })
 export class HomeComponent implements OnInit {
 
-
   public form: FormGroup;
 
   public saveDataApi: any[] = [];
@@ -19,24 +19,20 @@ export class HomeComponent implements OnInit {
   constructor(
     public onlyRoutesService: OnlyRoutesService,
     private formbuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
     this.form = this.formbuilder.group({
-      origin: ['MZL'],
+      origin: ['MZL', [Validators.required, Validators.minLength(3)]],
       destination: ['BCN'],
       level: [0]
     });
   }
 
-  ngOnInit(): void {
-    //this.loadInfo();
-    // this.obtainDataForm();
-  }
-
+  ngOnInit(): void { }
 
   submit() {
     console.log(this.form.value);
     this.router.navigate(['/home'], { queryParams: { origin: this.form.value.origin, destination: this.form.value.destination, level: this.form.value.level } });
   }
+
 }

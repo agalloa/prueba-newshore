@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-11">
-      <div class="card mt-xl-3">
+      <div class="card mt-xl-3 shadow border-0 rounded">
         <div class="card-body">
           <h1 class="card-title mt-xl-3 principal-title">Flights</h1>
           <form class="custom-form" [formGroup]="form">
@@ -18,59 +18,39 @@
             </div>
             <div class="mt-xl-5 mt-lg-5 mt-md-5 mt-sm-5 mt-5">
               <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                   <h5 class="subtitle">
                     <i class="fa-solid fa-plane-departure"></i> Origin
                   </h5>
-                  <input
-                    class="form-control form-control-lg"
-                    type="text"
-                    formControlName="origin"
-                    placeholder="Origin"
-                    aria-label="Origin"
-                  />
-                  <!-- <select
-                    formControlName="origin"
-                    class="form-select mt-xl-4"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Enter departure city</option>
-                    <option
-                      value="{{ data.departureStation }}"
-                      *ngFor="let data of selectRoutes"
-                    >
-                      {{ data.departureStation }}
-                    </option>
-                  </select> -->
+                  <div>
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="origin"
+                      placeholder="Origin"
+                      aria-label="Origin"
+                      minlength="3"
+                    />
+                  </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                   <h5 class="subtitle">
                     Destination <i class="fa-solid fa-plane-arrival"></i>
                   </h5>
                   <input
-                    class="form-control form-control-lg"
+                    class="form-control"
                     type="text"
                     formControlName="destination"
                     placeholder="Destination"
                     aria-label="destination"
+                    minlength="3"
                   />
-                  <!-- <select
-                    formControlName="destination"
-                    class="form-select mt-xl-4"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Enter destination city</option>
-                    <option
-                      value="{{ data.arrivalStation }}"
-                      *ngFor="let data of selectRoutes"
-                    >
-                      {{ data.arrivalStation }}
-                    </option>
-                  </select> -->
                 </div>
               </div>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto mt-xl-5">
+            <div
+              class="d-grid gap-2 col-6 mx-auto mt-xl-5 mt-lg-5 mt-md-3 mt-sm-3 mt-3"
+            >
               <button
                 class="btn btn-blue rounded-pill"
                 type="button"
