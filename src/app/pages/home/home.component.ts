@@ -54,11 +54,8 @@ export class HomeComponent implements OnInit {
 }
 
 export function checkOrigin(control: AbstractControl): { [key: string]: boolean } | null {
-  //console.log("first");
   const origin = control.get('origin');
   const destination = control.get('destination');
-  //console.log('origin:', origin?.value);
-  //console.log('destination', destination?.value);
   if (origin?.value == destination?.value) {
     return { checkOrigin: true }
   }

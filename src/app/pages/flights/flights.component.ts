@@ -36,10 +36,8 @@ export class FlightsComponent implements OnInit {
 
         this.onlyRoutesService.getRoutes(params['level']).subscribe(
           (data: any[]) => {
-            console.log(data);
             this.itsQueried = true;
             this.saveDataApi = data.filter(x => x.departureStation.includes(params['origin']) || x.arrivalStation.includes(params['destination']));
-            console.log(this.saveDataApi);
           }
         )
       }
