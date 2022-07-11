@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { OnlyRoutesService } from '../../services/only-routes.service';
@@ -16,23 +16,51 @@ export class HomeComponent implements OnInit {
 
   public saveDataApi: any[] = [];
 
+  public currency = [
+    {
+      money: ' USD ', rate: 1
+    },
+    {
+      money: ' COP ', rate: 4200
+    },
+    {
+      money: ' EUR ', rate: 1.2
+    }
+  ]
+
   constructor(
     public onlyRoutesService: OnlyRoutesService,
     private formbuilder: FormBuilder,
     private router: Router
   ) {
     this.form = this.formbuilder.group({
-      origin: ['MZL', [Validators.required, Validators.minLength(3)]],
-      destination: ['BCN'],
-      level: [0]
+      origin: ['', Validators.maxLength(3)],
+      destination: ['', Validators.maxLength(3)],
+      level: [0],
+      currency: [1]
+    }, {
+      validators: checkOrigin
     });
   }
 
   ngOnInit(): void { }
 
   submit() {
-    console.log(this.form.value);
-    this.router.navigate(['/home'], { queryParams: { origin: this.form.value.origin, destination: this.form.value.destination, level: this.form.value.level } });
+    console.log(this.form.valid);
+    if (this.form.valid) {
+      this.router.navigate(['/home'], { queryParams: { origin: this.form.value.origin, destination: this.form.value.destination, level: this.form.value.level, currency: this.form.value.currency } });
+    }
   }
+}
 
+export function checkOrigin(control: AbstractControl): { [key: string]: boolean } | null {
+  //console.log("first");
+  const origin = control.get('origin');
+  const destination = control.get('destination');
+  //console.log('origin:', origin?.value);
+  //console.log('destination', destination?.value);
+  if (origin?.value == destination?.value) {
+    return { checkOrigin: true }
+  }
+  return null;
 }
