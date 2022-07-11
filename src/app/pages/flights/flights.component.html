@@ -1,4 +1,6 @@
-<p *ngIf="saveDataApi.length == 0 && itsQueried == true">No hay resultados</p>
+<div *ngIf="saveDataApi.length == 0 && itsQueried == true">
+  <app-page-not-found></app-page-not-found>
+</div>
 
 <div
   class="card my-xl-5 mt-lg-5 mt-md-5 mt-sm-3 mt-3 animate__animated animate__tada"

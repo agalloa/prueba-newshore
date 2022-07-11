@@ -31,8 +31,11 @@
                       aria-label="Origin"
                       maxlength="3"
                     />
-                    <p *ngIf="form.hasError('checkOrigin')">
-                      El origin y el destino no pueden ser iguales
+                    <p
+                      *ngIf="form.hasError('checkOrigin')"
+                      class="text-danger mt-xl-2 mt-lg-2 mt-md-2 mt-sm-1 mt-1"
+                    >
+                      Origin and destination cannot be the same
                     </p>
                   </div>
                 </div>
@@ -48,8 +51,11 @@
                     aria-label="destination"
                     maxlength="3"
                   />
-                  <p *ngIf="form.hasError('checkOrigin')">
-                    El origin y el destino no pueden ser iguales
+                  <p
+                    *ngIf="form.hasError('checkOrigin')"
+                    class="text-danger mt-xl-2 mt-lg-2 mt-md-2 mt-sm-1 mt-1"
+                  >
+                    Origin and destination cannot be the same
                   </p>
                 </div>
                 <div class="col-xl-2">
